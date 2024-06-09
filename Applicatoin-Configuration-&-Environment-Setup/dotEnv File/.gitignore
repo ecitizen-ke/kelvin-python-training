@@ -1,0 +1,11 @@
+# Ignore the main .env file which contains environment variables for configuration
+.env
+
+# Ignore the .env file specific to the development environment
+.env.development
+
+# Ignore the .env file specific to the testing environment
+.env.testing
+
+# Ignore the .env file specific to the production environment
+.env.production
