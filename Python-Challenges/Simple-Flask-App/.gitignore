@@ -1,2 +1,2 @@
-# Ignores pycache files 
-__pycache__
+# Ignores pycache files.
+__pycache__/
