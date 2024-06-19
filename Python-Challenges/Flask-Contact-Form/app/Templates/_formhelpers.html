@@ -1,0 +1,18 @@
+{% macro render_field(field) %}
+    <!-- Render the field label -->
+    <dt>{{ field.label }}</dt>
+    
+    <!-- Render the field input element, using **kwargs to pass any additional attributes -->
+    <dd>{{ field(**kwargs)|safe }}</dd>
+    
+    <!-- Check if there are any validation errors for the field -->
+    {% if field.errors %}
+        <!-- If errors exist, render them in an unordered list -->
+        <ul class="errors">
+            <!-- Iterate over each error message and display it as a list item -->
+            {% for error in field.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
