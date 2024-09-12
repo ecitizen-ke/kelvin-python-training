@@ -1,3 +1,5 @@
+# Module1: Introduction to Object-Oriented-Programming
+# Lesson 1.1:Understanding Programming Paradigms
 '''
 A programming paradigm is a fundamental style or approach to programming,
 characterized by a set of principles and methods of writing code. Different 
@@ -9,8 +11,8 @@ paradigms offer different ways of thinking about and structuring programs.
 This is a way of structuring program scripts in a proceedural (step-by-step)
 structure/ format. (Top to bottom)
 '''
-# Example 
 
+# Example 
 def greeting(name):
     print(f"Hellow my name is {name}!")
 
@@ -55,6 +57,7 @@ class Dog:
 my_dog = Dog("Buddy")
 my_dog.bark()
 
+# Lesson 1.2: Basics of Object-Oriented Programming
 ## Objects 
 '''
 Instances of classes that contain both data (attributes/ properties) and behaviour
@@ -64,6 +67,29 @@ Instances of classes that contain both data (attributes/ properties) and behavio
 '''
 Blueprints for creating objects, defining their structure and behaviour
 '''
+
+# Module 2: Classes and Objects 
+# Lesson 2.1: Creating Classes and Objects 
+
+# Defining a class
+class Dog:
+    # Class body
+    pass  # Placeholder indicating that the class has no attributes or methods yet
+
+# Creating an Object/ Instance of a given class
+my_dog = Dog()
+print(my_dog)  # Output: <__main__.Dog object at 0x7fabcabc1234>
+
+# The __init__ Method (Constructor)
+class Dog:
+    def __init__(self, name, age):
+        self.name = name  # Instance variable for the dog's name
+        self.age = age    # Instance variable for the dog's age
+
+# Creating an object of the Dog class
+my_dog = Dog("Buddy", 3)
+print(f"My dog's name is {my_dog.name} and he is {my_dog.age} years old.")
+
 
 class Circle: # Defining a class named Circle
     # Constructor method (__init__) initilizes the object(s)(self) 
@@ -88,8 +114,23 @@ This is an attempt to create a class called Shape with various subclasses within
 (square, triangle) each with their own attributes (length, height, base) but can access 
 methods inherited from the mother calss
 '''
-import math # Importing the math module 
+# Instance Variables and Methods
+# Defining and accessing Instance Variables
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
 
+    def display_info(self):
+        return f"{self.year} {self.make} {self.model}"
+
+# Creating an object of the Car class
+my_car = Car("Toyota", "Camry", 2020)
+print(my_car.display_info())  # Output: 2020 Toyota Camry
+
+
+import math # Importing the math module 
 # Defining the parent class shape
 class Shape:
     # Defining methods of the parent class that can be inherited by the 
@@ -143,41 +184,6 @@ print(f"Area of my triangle is {area_t}")
 print(f"Peremeter of my triangle is {peremeter_t}")
 
 
-# Lesson #1
-# Defining a class
-class Dog:
-    # Class body
-    pass  # Placeholder indicating that the class has no attributes or methods yet
-
-# Creating an Object
-my_dog = Dog()
-print(my_dog)  # Output: <__main__.Dog object at 0x7fabcabc1234>
-
-# The __init__ Method (Constructor)
-class Dog:
-    def __init__(self, name, age):
-        self.name = name  # Instance variable for the dog's name
-        self.age = age    # Instance variable for the dog's age
-
-# Creating an object of the Dog class
-my_dog = Dog("Buddy", 3)
-print(f"My dog's name is {my_dog.name} and he is {my_dog.age} years old.")
-
-# Lesson #2
-# Defining and accessing Instance Variables
-class Car:
-    def __init__(self, make, model, year):
-        self.make = make
-        self.model = model
-        self.year = year
-
-    def display_info(self):
-        return f"{self.year} {self.make} {self.model}"
-
-# Creating an object of the Car class
-my_car = Car("Toyota", "Camry", 2020)
-print(my_car.display_info())  # Output: 2020 Toyota Camry
-
 # Instance Methods
 class Circle:
     def __init__(self, radius):
@@ -194,4 +200,118 @@ my_circle = Circle(5)
 print(f"Area: {my_circle.area()}")  # Output: Area: 78.5
 print(f"Circumference: {my_circle.circumference()}")  # Output: Circumference: 31.400000000000002
 
-#
+# Module 3: Class Attributes and Class Variables
+## Difference Bewtween Instance variables and Class variables
+### Instance Variables
+'''
+These are variables that are specific/ unique to a certain instance of a class and thus depending on the instance the variable value may change from one instance to another.
+'''
+
+#Example 
+
+class Fruit:
+    def __init__(self, name , color, taste):
+        self.name = name
+        self.color = color
+        self.taste  = taste
+
+orange = Fruit('Orange', 'Orange','Bitter')
+apple  = Fruit('Apple', 'Red', 'Sweet')
+print(f'{apple.name} characteristics are color: {apple.color} and taste: {apple.taste}')
+
+### Class Variables
+'''
+These are attributes sharable across all instances of a class. They are defined directly in any class body but outside any methods within the class. The values of such attributes/variabls remains constant across all class instances of a particular class
+'''
+class Planet:
+    #-The three variables below are exaples of class variables and are defined in the class body but outside any methods
+    speed_light = 299792458
+    planck_constant = 6.63e-34
+
+    '''
+    This is the initialization of a standard method using the __init__ 
+    constructor with the attributes ocean, sea, continent and country
+    '''
+    def __init__(self, name, ocean, sea, continent, country):
+        self.name = name
+        self.ocean =  ocean
+        self.sea = sea
+        self.continent = continent
+        self.country = country
+
+p4 = Planet('Mars', 0, 0, 100, 0)
+p3 = Planet('Earth', 5, 50, 7, 195)
+
+#-Class variables can be accessed through class instances or by calling the class name directly
+print(f'{p4.name} has {p4.ocean} number of oceans but the speed of light is {p4.speed_light} m/s^2')
+print(f'{p3.name} has {p3.ocean} number of oceans but the speed of light is {p3.speed_light} m/s^2')
+print(f'{p3.name} has the speed of light set to {Planet.speed_light} m/s^2')
+
+## Class Methods and Static Methods 
+### Class Methods
+'''
+Methods that are bound to the class and not an instance of the class. They can modify class state across all instances of a class and defined using @calssmethod decorator with cls as the first parameter.
+'''
+
+class animal:
+
+    #-This is a class variable that is accessible across various instances of the class
+    count = 0
+
+    # This is an __init__ constructor method that is automatically called when a new instance of the class is called so as to initialize the new class instance with default/provided values.
+    def __init__(self, name, product):
+        self.name = name
+        self.product = product
+        animal.count += 1 
+
+    @classmethod
+    def get_count(cls):
+        return cls.count
+    
+#- Here I initialize two class objects thus running the __init__ constructor twice setting the count value to +=1 twice which gives me a value of 2 
+v1 = print(f'The initial value of count is: {animal.get_count()}') # before initialization 
+
+insect = animal('Bee', 'honey')
+herbivore = animal('Cow', 'milk') 
+
+v2 = print(f'The final value of count is: {animal.get_count()}') # After initialization 
+
+
+
+### Static Methods 
+'''
+Methods that don't access or modify class state or instance state. Used for utility functions but don't access class or instance data. Defined using the @staticmethod decorator
+'''
+
+class Math:
+    # This is the process of defining a static method using the @staticmethod decorator
+    @staticmethod
+    def add(x,y):
+        return x +y 
+    @staticmethod
+    def multiply(x,y):
+        return x*y
+    
+print(Math.add(4,5))
+print(Math.multiply(6,7))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

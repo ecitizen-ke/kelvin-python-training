@@ -19,3 +19,5 @@ Rectangle.set_dimensions(5, 4)
 
 # Calculate and print the area of the rectangle using the class method
 print("Area of rectangle:", Rectangle.area())
+
+
