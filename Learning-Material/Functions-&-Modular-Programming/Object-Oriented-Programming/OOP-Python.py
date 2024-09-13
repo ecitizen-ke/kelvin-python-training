@@ -200,7 +200,7 @@ my_circle = Circle(5)
 print(f"Area: {my_circle.area()}")  # Output: Area: 78.5
 print(f"Circumference: {my_circle.circumference()}")  # Output: Circumference: 31.400000000000002
 
-# Module 3: Class Attributes and Class Variables
+# Module 3: Class Attributes and Class Methods 
 ## Difference Bewtween Instance variables and Class variables
 ### Instance Variables
 '''
@@ -224,7 +224,7 @@ print(f'{apple.name} characteristics are color: {apple.color} and taste: {apple.
 These are attributes sharable across all instances of a class. They are defined directly in any class body but outside any methods within the class. The values of such attributes/variabls remains constant across all class instances of a particular class
 '''
 class Planet:
-    #-The three variables below are exaples of class variables and are defined in the class body but outside any methods
+    #-The variables below are examples of class variables and are defined in the class body but outside any methods
     speed_light = 299792458
     planck_constant = 6.63e-34
 
@@ -250,12 +250,12 @@ print(f'{p3.name} has the speed of light set to {Planet.speed_light} m/s^2')
 ## Class Methods and Static Methods 
 ### Class Methods
 '''
-Methods that are bound to the class and not an instance of the class. They can modify class state across all instances of a class and defined using @calssmethod decorator with cls as the first parameter.
+Methods that are bound to the class and not an instance of the class. They can modify class data/attributes across all instances of a class and defined using @calssmethod decorator with cls as the first parameter. They are used to modify or edit class variables/attributes. 
 '''
 
 class animal:
 
-    #-This is a class variable that is accessible across various instances of the class
+    #-This is a class variable/attribute that is accessible across various instances of the class
     count = 0
 
     # This is an __init__ constructor method that is automatically called when a new instance of the class is called so as to initialize the new class instance with default/provided values.
@@ -264,6 +264,7 @@ class animal:
         self.product = product
         animal.count += 1 
 
+    #- This is a class method that is initalized across several/ all instances of a given class depending on the nature of the class method that is being initialized
     @classmethod
     def get_count(cls):
         return cls.count
@@ -280,38 +281,101 @@ v2 = print(f'The final value of count is: {animal.get_count()}') # After initial
 
 ### Static Methods 
 '''
-Methods that don't access or modify class state or instance state. Used for utility functions but don't access class or instance data. Defined using the @staticmethod decorator
+Methods that don't access or modify class/instance data/attributes. Used for utility functions but don't access class or instance data. Defined using the @staticmethod decorator
 '''
 
 class Math:
     # This is the process of defining a static method using the @staticmethod decorator
     @staticmethod
     def add(x,y):
-        return x +y 
+        return x + y 
     @staticmethod
     def multiply(x,y):
-        return x*y
+        return x * y
     
 print(Math.add(4,5))
 print(Math.multiply(6,7))
 
 
+    #- Static methods carry out operations without the use of class or instance data/ attributes
+class stringutils:
+    @staticmethod
+    def is_palindrome(s):
+        return s== s[::-1]
+    
+print(stringutils.is_palindrome('hommer'))
+print(stringutils.is_palindrome('racecar'))
 
 
 
 
+# Module 4: Inheritance 
+## Lesson 4.1: Basics of Inheritance
+'''
+Inheritance is a fundamental concept in OOP where a sub-class/ minor-class can inherit attributes/ methods from a super-class or base-class. This promotes code reusability and creates a logical relationship between classes 
+'''
+
+#- Creating a parent-child class 
+'''
+This is the parentclass titled as ParentClass with the ChildClass defined right below it. The child class is characterized with the ParentClass title/name acting as the self initilizer of the childclass thus creating a link/connetion between the parentclass and the childclass.
+'''
+class ParentClass:
+    pass
+
+class ChildClass(ParentClass):
+    pass
+
+
+## Method Overriding 
+'''
+Allows a subclass to provide a specific implementation of a method already defined in its superclass by defining a method with the same name in the subclass. The subclass's version overrides the superclass's version. 
+'''
+class Vehicle:
+    def move(self, type):
+        self.type = type 
+        return f"The {self.type} is moving"
+class Car(Vehicle):
+    def move(self):
+        return f"The car is driving"
+
+car = Car()
+vcar = Vehicle()
+print(vcar.move('truck'))
+print(car.move())
+
+
+#- Or
+
+class Vehicle:
+    def move(self, type):
+        return f"The {type} is moving"
+class Car(Vehicle):
+    def move(self):
+        return f"The car is cruising"
+    
+car = Car()
+vcar = Vehicle()
+print(vcar.move('tractor'))
+print(car.move())
 
 
 
+## Types of Inheritance
+'''
+Inheritance is a fundamental concept in OOP [Object-Oriented-Programming] where a sub-class/ derived class inherits attributes and methods from a parent class/ super class this promotes code reusability and helps create a logical relationship between classes
+'''
 
+###1. Single Inheritance 
+'''
+Occurs when child class inherits from only one parent class. Parent class: Contains common attributes and methods. Child class:Inherits from parent class and can override or extend its behaviour.
+'''
+class Animal:
+    def speak(self):
+        return 'Animal is making a sound'
 
+class Dog(Animal):
+    def speak(self):
+        return 'Dog is barking'
 
-
-
-
-
-
-
-
-
-
+doug = Dog()
+print(doug.speak())
